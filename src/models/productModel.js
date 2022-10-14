@@ -3,7 +3,7 @@ const connection = require('../db/connection');
 
 const getByProductsData = async () => {
   const [result] = await connection.execute(
-    'SELECT * FROM products',
+    'SELECT * FROM StoreManager.products',
   );
 
   return camelize(result);
@@ -11,7 +11,7 @@ const getByProductsData = async () => {
 
 const findById = async (idProduto) => {
   const [result] = await connection.execute(
-    'SELECT * FROM products WHERE id = ?',
+    'SELECT * FROM StoreManager.products WHERE id = ?',
     [idProduto],
   );
   return camelize(result);

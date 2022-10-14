@@ -1,38 +1,28 @@
 const { expect } = require("chai");
 const sinon = require('sinon');
-const { productModel } = require("src/models/productModel.js");
-const connection = require("../../../src/db/connection");
 
-describe('Model de produtos', () => {
-  describe('Listar todos os produtos', () => {
-    const expectReturn = [
-      {
-        id: 1,
-        name: "Martelo de Thor",
-      },
-      {
-        id: 2,
-        name: "Traje de encolhimento",
-      },
-      {
-        id: 3,
-        name: "Escudo do Capitão América",
-      },
-    ];
+const connection = require("../../../src/db/connection");
+const productModel = require("../../../src/models/productModel");
+
+const productsMock = require('../mocks/products.mock')
+
+describe('Model de produtos', function () {
+  describe('Listar todos os produtos', function () {
+    productsMock;
 
     beforeEach(() => {
-      sinon.stub(connection, 'execute').resolves([expectReturn])
+      sinon.stub(connection, "execute").resolves([productsMock]);
     });
 
-    it('Deve retornar um array com todos os elementos', async () => {
-      const result = await productModel.getByProducts();
+    it('Deve retornar um array com todos os elementos', async function () {
+      const result = await productModel.getByProductsData();
 
       expect(result).to.be.a('array');
-      expect(result).to.be.deep.eq(expectReturn);
+      expect(result).to.be.deep.eq(productsMock);
     });
 
     afterEach(() => {
-      sinon.restore();
+      sinon.restore;
     });
   })
 });

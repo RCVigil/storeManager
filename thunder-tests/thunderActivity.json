@@ -82,5 +82,43 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "55e39fa4-58e2-41a2-97d1-5bcc591cb5d0",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products",
+    "url": "http://localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-10-14T22:52:33.487Z",
+    "modified": "2022-10-14T22:52:33.534Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 4,\n  \"name\": \"Coca-Cola\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bbf85645-0249-4eee-8147-505dde492b3d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/",
+    "url": "http://localhost:3000/products/",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-10-14T22:53:06.608Z",
+    "modified": "2022-10-14T22:53:06.634Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": 4,\n  \"name\": \"Coca-Cola\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

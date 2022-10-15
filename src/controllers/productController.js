@@ -18,7 +18,17 @@ const getProductControllerId = async (req, res) => {
   res.status(200).json(productUnit);
 };
 
+const creatProductControl = async (req, res) => {
+  const newProduct = { ...req.body };
+  const novoProd = await productService.addProductService(newProduct);
+
+  console.log('PRODUCTcONTROLLER ADICIONOU: ', novoProd);
+
+  res.status(201).json({ product: newProduct });
+};
+
 module.exports = {
   getProductController,
   getProductControllerId,
+  creatProductControl,
 };

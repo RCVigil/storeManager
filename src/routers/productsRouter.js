@@ -5,14 +5,23 @@ const {
   creatProductControl,
 } = require('../controllers/productController');
 
+const validationAddProducts = require('../middlewares/validatedInsertProduct');
+
 const router = express.Router();
 
 // busca produto (todos)
 router.get('/', getProductController);
+
 // busca produto único por (id)
 router.get('/:id', getProductControllerId);
+
 // adiciona produto por name
-router.post('/', creatProductControl);
+router.post(
+  '/',
+  validationAddProducts,
+  creatProductControl,
+);
+
 // router.put('/:id', ); alterar produto
 // router.get('/', );
 // router.get('/:id', );

@@ -8,7 +8,6 @@ const getProductService = async (idProduto) => {
 
 const addProductService = async ({ name }) => {
   const result = await productModel.insert({ name });
-  console.log('RESULT DA addProductService é', result);
   return result;
 };
 

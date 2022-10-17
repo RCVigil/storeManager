@@ -19,12 +19,27 @@ const getProductControllerId = async (req, res) => {
 };
 
 const creatProductControl = async (req, res) => {
-  const newProduct = { ...req.body };
-  const novoProd = await productService.addProductService(newProduct);
+  const { name } = req.body;
 
-  console.log('PRODUCTcONTROLLER ADICIONOU: ', novoProd);
+  if (!name) {
+    res.status(404).json({ message: '"name" is required' });
+  }
 
-  res.status(201).json({ product: newProduct });
+  if (name.lenght < 5) {
+    res
+      .status(422)
+      .json({ message: '"name" length must be at least 5 characters long' });
+  }
+
+  if (typeof (name) === 'string') {
+    console.log('newProduct no CONTROLLER é: ', name);
+
+    const novoProd = await productService.addProductService({ name });
+
+    console.log('PRODUCTcONTROLLER ADICIONOU: ', novoProd);
+
+    res.status(201).json({ id: novoProd, name });
+  }
 };
 
 module.exports = {

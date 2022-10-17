@@ -5,8 +5,10 @@ const getProductService = async (idProduto) => {
   const result = await productModel.getByProductsData(idProduto);
   return result;
 };
-const addProductService = async (id, name) => {
-  const result = await productModel.addProductDB(id, name);
+
+const addProductService = async ({ name }) => {
+  const result = await productModel.insert({ name });
+  console.log('RESULT DA addProductService é', result);
   return result;
 };
 

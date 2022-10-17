@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', getProductController);
 // busca produto único por (id)
 router.get('/:id', getProductControllerId);
-// adiciona produto por (id)
+// adiciona produto por name
 router.post('/', creatProductControl);
 // router.put('/:id', ); alterar produto
 // router.get('/', );

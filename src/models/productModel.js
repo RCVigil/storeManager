@@ -1,23 +1,23 @@
 const camelize = require('camelize');
-// const snakeize = require('snakeize');
+const snakeize = require('snakeize');
 const connection = require('../db/connection');
 
-// const insert = async (travel) => {
-//   const columns = Object.keys(snakeize(travel))
-//     .map((key) => `${key}`)
-//     .join(', ');
+const insert = async (products) => {
+  const columns = Object.keys(snakeize(products))
+    .map((key) => `${key}`)
+    .join(', ');
 
-//   const placeholders = Object.keys(travel)
-//     .map((_key) => '?')
-//     .join(', ');
+  const placeholders = Object.keys(products)
+    .map((_key) => '?')
+    .join(', ');
 
-//   const [{ insertId }] = await connection.execute(
-//     `INSERT INTO travels (${columns}) VALUE (${placeholders})`,
-//     [...Object.values(travel)],
-//   );
+  const [{ insertId }] = await connection.execute(
+    `INSERT INTO products (${columns}) VALUE (${placeholders})`,
+    [...Object.values(products)],
+  );
 
-//   return insertId;
-// };
+  return insertId;
+};
 
 const getByProductsData = async () => {
   const [result] = await connection.execute(
@@ -35,17 +35,8 @@ const findById = async (idProduto) => {
   return camelize(result);
 };
 
-const addProductDB = async (id, name) => {
-  const [result] = await connection.execute(
-    'INSERT INTO StoreManager.products (id, name) VALUES (?, ?)',
-    [id, name],
-  );
-  return camelize(result);
-};
-
 module.exports = {
-  // insert,
+  insert,
   getByProductsData,
   findById,
-  addProductDB,
 };

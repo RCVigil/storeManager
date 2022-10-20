@@ -4,7 +4,7 @@ const sinon = require("sinon");
 const connection = require("../../../src/db/connection");
 const productModel = require("../../../src/models/productModel");
 
-const productsMock = require("../mocks/products.mock");
+const {productsMock, newProducts} = require("../mocks/products.mock");
 
 describe("TESTANDO A CAMADA MODEL", function () {
   describe("Listar os produtos", function () {
@@ -26,7 +26,6 @@ describe("TESTANDO A CAMADA MODEL", function () {
 
       // Ação
       const result = await productModel.findById([productsMock]);
-      console.log('O result da MOdel é: ', result);
 
       // Assertiva
       expect([result[0]]).to.be.deep.eq([{ id: 1, name: "Martelo de Thor" }]);
@@ -35,14 +34,13 @@ describe("TESTANDO A CAMADA MODEL", function () {
     describe("Inserir Produtos na Model(5-20)", () => {
       it("Deve inserir um array com novo produto", async function () {
         // Arranjo
-        sinon.stub(connection, "execute").resolves({id: 4, name: "Capa do Sr Destino"});
+        sinon.stub(connection, "execute").resolves([{insertId: 4}]);
 
         // Ação
-        const result = await productModel.insert({name: "Capa do Sr Destino"});
+        const result = await productModel.insert(newProducts);
 
         // Assertiva
-        // expect(result).to.be.a("array");
-        expect(result).to.be.deep.eq({ id: 4, name: "Capa do Sr Destino" });
+        expect(result).to.equal(4);
       });
     });
 

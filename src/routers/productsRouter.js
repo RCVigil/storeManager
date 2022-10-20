@@ -22,8 +22,4 @@ router.post(
   creatProductControl,
 );
 
-// router.put('/:id', ); alterar produto
-// router.get('/', );
-// router.get('/:id', );
-
 module.exports = router;

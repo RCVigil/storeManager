@@ -13,6 +13,15 @@ const productsMock = [
   },
 ];
 
+const newProducts = {
+  id: 4,
+  name: "Capa do Dr. Estranho",
+};
+
+const productReqMock = [{id: 1}];
+
 module.exports = {
   productsMock,
+  newProducts,
+  productReqMock,
 };

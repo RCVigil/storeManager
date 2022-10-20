@@ -31,7 +31,7 @@ const findById = async (idProduto) => {
   const [result] = await connection.execute(
     'SELECT * FROM StoreManager.products WHERE id = ?',
     [idProduto],
-  );
+    );
   return camelize(result);
 };
 

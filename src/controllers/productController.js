@@ -2,7 +2,6 @@ const productService = require('../services/productService');
 
 const getProductController = async (_req, res) => {
   const buscaProduto = await productService.getProductService();
-  // console.log('BUSCA PRODUTO no Controller:   ', buscaProduto);
   if (!buscaProduto) return res.status(404).json({ message: 'Product not found' });
   res.status(200).json(buscaProduto);
 };

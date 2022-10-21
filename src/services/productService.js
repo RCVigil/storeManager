@@ -14,7 +14,14 @@ const addProductService = async ({ name }) => {
   return result;
 };
 
+const deleteProductService = async (idProduto) => {
+  const result = await productModel.deleteByProductsData(idProduto);
+
+  return result;
+};
+
 module.exports = {
   getProductService,
   addProductService,
+  deleteProductService,
 };

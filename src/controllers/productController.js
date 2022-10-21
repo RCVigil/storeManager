@@ -22,13 +22,32 @@ const getProductControllerId = async (req, res) => {
 const creatProductControl = async (req, res) => {
   const { name } = req.body;
 
-    const novoProd = await productService.addProductService({ name });
+  const novoProd = await productService.addProductService({ name });
 
-    res.status(201).json({ id: novoProd, name });
+  res.status(201).json({ id: novoProd, name });
+};
+
+const deleteProductControllerId = async (req, res) => {
+  const bdStoreManager = await productService.getProductService();
+  console.log('Tamanho do BD = ', bdStoreManager.length);
+  const productId = req.params;
+
+  const idProduto = Number(productId.id);
+  console.log('idProduto é= ', idProduto);
+
+  if (idProduto < bdStoreManager.length) {
+    const buscaProduto = await productService.deleteProductService(idProduto);
+    console.log(buscaProduto);
+
+    res.status(204).json(buscaProduto);
+  }
+
+  return res.status(404).json({ message: 'Product not found' });
 };
 
 module.exports = {
   getProductController,
   getProductControllerId,
   creatProductControl,
+  deleteProductControllerId,
 };

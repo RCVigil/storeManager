@@ -2,6 +2,8 @@ const camelize = require('camelize');
 const snakeize = require('snakeize');
 const connection = require('../db/connection');
 
+const deleteProductQuery = 'DELETE FROM StoreManager.products WHERE id= ?';
+
 const insert = async (products) => {
   const columns = Object.keys(snakeize(products))
     .map((key) => `${key}`)
@@ -35,8 +37,15 @@ const findById = async (idProduto) => {
   return camelize(result);
 };
 
+const deleteByProductsData = async (idProduto) => {
+  const [result] = await connection.execute(deleteProductQuery, [idProduto]);
+
+  return camelize(result);
+};
+
 module.exports = {
   insert,
   getByProductsData,
   findById,
+  deleteByProductsData,
 };

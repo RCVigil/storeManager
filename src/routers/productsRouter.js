@@ -3,6 +3,7 @@ const {
   getProductController,
   getProductControllerId,
   creatProductControl,
+  deleteProductControllerId,
 } = require('../controllers/productController');
 
 const validationAddProducts = require('../middlewares/validatedInsertProduct');
@@ -20,6 +21,9 @@ router.post(
   '/',
   validationAddProducts,
   creatProductControl,
-);
+  );
+
+  // busca produto único por (id)
+router.delete('/:id', deleteProductControllerId);
 
 module.exports = router;

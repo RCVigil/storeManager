@@ -35,14 +35,13 @@ const deleteProductControllerId = async (req, res) => {
   const idProduto = Number(productId.id);
   console.log('idProduto é= ', idProduto);
 
-  if (idProduto < bdStoreManager.length) {
-    const buscaProduto = await productService.deleteProductService(idProduto);
-    console.log(buscaProduto);
-
-    res.status(204).json(buscaProduto);
+  if (idProduto > bdStoreManager.length) {
+    return res.status(404).json({ message: 'Product not found' });
   }
+  const buscaProduto = await productService.deleteProductService(idProduto);
+  console.log(buscaProduto);
 
-  return res.status(404).json({ message: 'Product not found' });
+  res.status(204).json(buscaProduto);
 };
 
 module.exports = {
